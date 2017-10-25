@@ -19,8 +19,6 @@ server.get('/',(req, res, next) => {
 })
 });
 
-server.use('/users',users);
-
 //catch 404 errors and forward them to error handlers 
 server.use((req,res,next) => {
     const err = new Error('Not Found');
@@ -43,6 +41,9 @@ server.use((err,req,res,next) => {
   //respond to terminal
   console.error(err);
 });
+
+ //controller routes
+ server.use('/users',users);
 
 //database connection 
 mongoose.Promise = global.Promise;
