@@ -9,7 +9,7 @@ var server = express();
 server.use(logger('dev'));
 
 //controllers
-var users = require('./controllers/users');
+var users = require('./routes/users');
 
 //Routes
 server.get('/',(req, res, next) => {
@@ -18,6 +18,10 @@ server.get('/',(req, res, next) => {
   message: 'This is the REST API of the application'
 })
 });
+
+ //controller routes
+ server.use('/users',users);
+ 
 
 //catch 404 errors and forward them to error handlers 
 server.use((req,res,next) => {
@@ -42,8 +46,6 @@ server.use((err,req,res,next) => {
   console.error(err);
 });
 
- //controller routes
- server.use('/users',users);
 
 //database connection 
 mongoose.Promise = global.Promise;

@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+var usersController = require('../controllers/userscontroller');
 var userModel = require('../models/usersmodel');
 
-router.get('/', function(req, res) {
-    res.send('Okay!! works now');
-});
+router.route('/')
+.get(usersController.index)
+
 
 router.route('/newuser')
 .post(function(req, res) {        
