@@ -9,5 +9,11 @@ module.exports = {
         var newUser = new userModel(req.body);   
         var user = await newUser.save();
         res.status(201).json(user);
+    },
+
+    getAllUsers: async (req,res,next) =>{
+        // var users = new userModel();
+        var users = await userModel.find();
+        res.status(200).json(users);
     }
 };
