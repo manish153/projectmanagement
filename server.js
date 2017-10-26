@@ -7,6 +7,7 @@ var server = express();
 
 //middleware
 server.use(logger('dev'));
+server.use(bodyParser.json());
 
 //controllers
 var users = require('./routes/users');
