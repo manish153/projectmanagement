@@ -15,5 +15,23 @@ module.exports = {
         // var users = new userModel();
         var users = await userModel.find();
         res.status(200).json(users);
+    },
+
+    getUser: async(req,res,next) =>{
+       var {userID} = req.params;
+       var user = await userModel.findById(userID);
+       console.log('fetched ', user);
+       res.status(200).json(user);
+    },
+
+    editUser: async(req,res,next) => {
+       var {userID} = req.params;
+       var newUser = req.body;
+       await userModel.findByIdAndUpdate(userID,newUser);
+       res.status(200).json({success : true})
+    },
+
+    replaceUser: async(req,res,next) => {
+       console.log('replace user in user controller');
     }
 };
