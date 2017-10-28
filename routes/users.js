@@ -1,8 +1,7 @@
 var express = require('express');
-// var router = express.Router();
 var router = require('express-promise-router')();
-
 var usersController = require('../controllers/userscontroller');
+const {validateParam, schemas} = require('../helpers/routehelpers');
 
 // all routes are /users
 router.route('/')
@@ -12,7 +11,7 @@ router.route('/newuser')
 .post(usersController.createUser);
 
 router.route(`/user/:userID`)
- .get(usersController.getUser)
+ .get(validateParam(schemas.idSchema,'userID'),usersController.getUser)
  .patch(usersController.editUser)
  .put(usersController.replaceUser)
 

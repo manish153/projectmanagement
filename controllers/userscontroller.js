@@ -1,5 +1,6 @@
 var userModel = require('../models/usersmodel');
 
+
 module.exports = {
     index: (req,res,next) => {
         res.send('This is the index of users');
@@ -18,6 +19,11 @@ module.exports = {
     },
 
     getUser: async(req,res,next) =>{
+
+//       const {userID} = req.value.params;
+
+       //const result = joi.validate(req.params, idSchema);
+       //console.log('result -- >',result)
        var {userID} = req.params;
        var user = await userModel.findById(userID);
        console.log('fetched ', user);
