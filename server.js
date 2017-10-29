@@ -1,16 +1,18 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var cors = require('cors');
-var logger = require('morgan');
-var server = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const logger = require('morgan');
+const helmet = require('helmet');
+const server = express();
 
+server.use(helmet());
 //middleware
 server.use(logger('dev'));
 server.use(bodyParser.json());
 
 //controllers
-var users = require('./routes/users');
+const users = require('./routes/users');
 
 //Routes
 server.get('/',(req, res, next) => {

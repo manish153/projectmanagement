@@ -10,6 +10,9 @@ router.route('/')
 router.route('/newuser')
 .post(usersController.createUser);
 
+router.route('/allusers')
+.get(usersController.getAllUsers);
+
 router.route(`/user/:userID`)
  .get(validateParam(schemas.idSchema,'userID'),usersController.getUser)
  .patch(usersController.editUser)
