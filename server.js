@@ -49,7 +49,6 @@ server.use((err,req,res,next) => {
   console.error(err);
 });
 
-
 //database connection 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/PROJECT_DB',{ useMongoClient: true });

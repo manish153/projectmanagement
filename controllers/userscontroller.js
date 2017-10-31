@@ -1,7 +1,6 @@
 const JWT = require('jsonwebtoken');
-var userModel = require('../models/usersmodel');
+const userModel = require('../models/usersmodel');
 const {JWT_SECRET} = require('../configurations/index');
-
 
 signToken = user => {
     return JWT.sign({
@@ -25,16 +24,11 @@ module.exports = {
     },
 
     getAllUsers: async (req,res,next) =>{
-        // var users = new userModel();
-        var users = await userModel.find();
+        const users = await userModel.find();
         res.status(200).json(users);
     },
 
     getUser: async(req,res,next) =>{
-
-//       const {userID} = req.value.params;
-       //const result = joi.validate(req.params, idSchema);
-       //console.log('result -- >',result)
        var {userID} = req.params;
        var user = await userModel.findById(userID);
        console.log('fetched ', user);
