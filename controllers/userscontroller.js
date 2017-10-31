@@ -44,5 +44,11 @@ module.exports = {
 
     replaceUser: async(req,res,next) => {
        console.log('replace user in user controller');
+    },
+
+    tempTest: async(req,res,next) =>{
+       //generate the token 
+       const token = signToken(req.user);
+       res.status(200).json({token});        
     }
 };

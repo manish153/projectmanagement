@@ -51,7 +51,7 @@ server.use((err,req,res,next) => {
 
 //database connection 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/PROJECT_DB',{ useMongoClient: true });
+mongoose.connect('mongodb://localhost:27017/PROJECT_DB',{useMongoClient: true});
 
 //Start the server
 const port = server.get('port') || 3000
