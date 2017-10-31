@@ -57,3 +57,7 @@ mongoose.connect('mongodb://localhost:27017/PROJECT_DB',{ useMongoClient: true }
 //Start the server
 const port = server.get('port') || 3000
 server.listen(port,() => console.log(`server is listening on port ${port}`));
+
+// to kill node process in windows use the following command in cmd 
+//  tasklist
+//  -> taskkill /F /IM node.exe 

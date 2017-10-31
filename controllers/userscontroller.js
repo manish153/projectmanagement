@@ -1,5 +1,16 @@
+const JWT = require('jsonwebtoken');
 var userModel = require('../models/usersmodel');
+const {JWT_SECRET} = require('../configurations/index');
 
+
+signToken = user => {
+    return JWT.sign({
+        iss: 'project_management',
+        sub: user._id,
+        iat: new Date().getTime(),
+        exp: new Date().setDate(new Date().getDate() +1)   
+        },JWT_SECRET);
+} 
 
 module.exports = {
     index: (req,res,next) => {
@@ -7,9 +18,10 @@ module.exports = {
     },
     
     createUser: async (req,res,next) =>{
-        var newUser = new userModel(req.body);   
-        var user = await newUser.save();
-        res.status(201).json(user);
+        const newUser = new userModel(req.body);   
+        await newUser.save();
+        const token = signToken(newUser);
+        res.status(200).json({token});
     },
 
     getAllUsers: async (req,res,next) =>{
@@ -21,7 +33,6 @@ module.exports = {
     getUser: async(req,res,next) =>{
 
 //       const {userID} = req.value.params;
-
        //const result = joi.validate(req.params, idSchema);
        //console.log('result -- >',result)
        var {userID} = req.params;
