@@ -13,7 +13,7 @@ signToken = user => {
 
 module.exports = {
     index: (req,res,next) => {
-        res.send('This is the index of users');
+        res.send('This is the index of users, updated this line on 07/03/2020');
     },
     
     createUser: async (req,res,next) =>{

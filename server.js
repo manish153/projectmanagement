@@ -14,7 +14,7 @@ server.use(bodyParser.json());
 //controllers
 const users = require('./routes/users');
 
-//Routes
+//routes
 server.get('/',(req, res, next) => {
   //res.json("This is the REST API, JSON response of the application");
   res.status(200).json({
