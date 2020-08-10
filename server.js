@@ -5,8 +5,21 @@ const cors = require('cors');
 const logger = require('morgan');
 const helmet = require('helmet');
 const server = express();
+require('dotenv').config(); 
 
+
+server.use(cors());
+server.options('*',cors());
 server.use(helmet());
+
+//routes
+server.get('/',(req, res, next) => {
+  //res.json("This is the REST API, JSON response of the application");   
+  res.status(200).json({
+  message: 'This is the REST API of the application'
+})
+});
+
 //middleware
 server.use(logger('dev'));
 server.use(bodyParser.json());
@@ -14,13 +27,6 @@ server.use(bodyParser.json());
 //controllers
 const users = require('./routes/users');
 
-//routes
-server.get('/',(req, res, next) => {
-  //res.json("This is the REST API, JSON response of the application");
-  res.status(200).json({
-  message: 'This is the REST API of the application'
-})
-});
 
  //controller routes
  server.use('/users',users);
@@ -51,7 +57,7 @@ server.use((err,req,res,next) => {
 
 //database connection 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/PROJECT_DB',{useMongoClient: true});
+mongoose.connect(process.env.CONNECTION_URL,{useMongoClient: true});
 
 //Start the server
 const port = server.get('port') || 3000

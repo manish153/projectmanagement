@@ -12,11 +12,15 @@ const passportLocal = passport.authenticate('local',{session: false})
 router.route('/')
 .get(usersController.index)
 
+// router.route('/gtoken')
+// .get(usersController.generateToken)
+
 router.route('/newuser')
 .post(usersController.createUser);
 
 router.route('/allusers')
-.get(passportJWT, usersController.getAllUsers);
+//.get(passportJWT, usersController.getAllUsers);
+.get(usersController.getAllUsers);
 
 router.route('/tempTest')
 .post(passportLocal, usersController.tempTest);
